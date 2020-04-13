@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    /* Base options */
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["es2015", "dom"],
+
+    "declaration": true,
+    "declarationMap": true,
+    /* Strict Type-Checking Options */
+    "strict": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": false, // Preact needs 'h' to be exposed without usage
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./", /* Used to set directory for "paths" option */
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  }
+}
