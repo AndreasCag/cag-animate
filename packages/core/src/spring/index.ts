@@ -24,7 +24,8 @@ export class Spring {
   private springConfig: SpringConfig;
   private animationConfig?: AnimationConfig;
 
-  private previousVelocity?: number;
+  public previousVelocity?: number;
+  public isFinished = false;
   private previousValue?: number;
   private previousTimestamp?: number;
   private nextTick?: number;
@@ -55,6 +56,8 @@ export class Spring {
     if (nextTick) {
       window.cancelAnimationFrame(nextTick);
     }
+
+    this.isFinished = true;
   }
 
   private tick() {
@@ -89,6 +92,7 @@ export class Spring {
     this.previousTimestamp = currentTimestamp;
     this.previousValue = safeValue;
     this.previousVelocity = safeVelocity;
+    this.isFinished = isFinished;
 
     return isFinished;
   }

@@ -1,2 +1,4 @@
 /packages/*/build/
 /packages/*/node_modules/
+lerna-debug.log
+.vscode

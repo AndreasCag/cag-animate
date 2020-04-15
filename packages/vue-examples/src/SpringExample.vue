@@ -1,22 +1,20 @@
 <template>
   <div id="app"
-      @mousemove="mouseMoveHandler" 
+      @mousemove="mouseMoveHandler"
       >
     <img
       class="image"
-      @mousedown="mouseDownHandler" 
-      @mouseup="mouseUpHandler" 
-      alt="Vue logo" 
-      src="./assets/logo.png" 
+      @mousedown="mouseDownHandler"
+      @mouseup="mouseUpHandler"
+      alt="Vue logo"
+      src="./assets/logo.png"
       :style="imgStyles"
     >
   </div>
 </template>
 
 <script>
-import { Spring } from '@cag-animate/core/build/spring'
-
-console.log(Spring);
+import { Spring } from '@cag-animate/core'
 
 export default {
   name: 'App',
@@ -31,7 +29,7 @@ export default {
       dragPoints: [],
     };
   },
-  
+
   computed: {
     imgStyles() {
       const { left, top } = this;
@@ -50,8 +48,6 @@ export default {
     mouseDownHandler(event) {
       const { left, top, _leftSpring, _topSpring } = this;
 
-      console.log('md')
-
       this.isDragging = true
       this.initialX = event.clientX - left;
       this.initialY = event.clientY - top;
@@ -68,7 +64,6 @@ export default {
       if (!isDragging) {
         return;
       }
-      console.log('mm')
 
       this.left = event.clientX - initialX;
       this.top = event.clientY - initialY;
@@ -95,16 +90,16 @@ export default {
           if (!prevPoint) {
             return;
           }
-          
+
           // px/second
-          const speed = (point[field] - prevPoint[field]) / ((point.timestamp - prevPoint.timestamp) / 1000) ; 
+          const speed = (point[field] - prevPoint[field]) / ((point.timestamp - prevPoint.timestamp) / 1000) ;
 
           const alpha = 1 / ((slicedPoints.length - idx) ** 2);
 
           speedSum += speed * alpha;
           dividerSum += alpha;
         });
-        
+
         return speedSum / dividerSum;
       };
 
@@ -129,7 +124,7 @@ export default {
         ...springConfig,
         initialVelocity: leftSpeed,
       });
-      const topSpring = new Spring({ 
+      const topSpring = new Spring({
         ...springConfig,
         initialVelocity: topSpeed,
       });
